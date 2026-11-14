@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <title>Go Project Structure 2026: Clean Architecture &amp; Best Practices</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    
+    <meta name="description" content="Learn modern Go project structure patterns for 2026. Practical guide to clean architecture, dependency management, and organizing Go code for production applications.">
+    <link rel="canonical" href="https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Reintech">
+    <meta property="og:title" content="Go Project Structure 2026: Clean Architecture &amp; Best Practices">
+    <meta property="og:description" content="Learn modern Go project structure patterns for 2026. Practical guide to clean architecture, dependency management, and organizing Go code for production applications.">
+    <meta property="og:url" content="https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices">
+    <meta property="og:image" content="https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Go Project Structure 2026: Clean Architecture &amp; Best Practices">
+    <meta name="twitter:description" content="Learn modern Go project structure patterns for 2026. Practical guide to clean architecture, dependency management, and organizing Go code for production applications.">
+    <meta name="twitter:image" content="https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-og.jpg">
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://reintech.io/#organization","name":"Reintech","legalName":"Reintech Ltd.","url":"https://reintech.io/","logo":{"@type":"ImageObject","url":"https://reintech.io/brand-lockup.png","width":1200,"height":164},"description":"A boutique recruiting agency for senior software engineers, remote and local. Contract and payroll handled.","email":"contact@reintech.io","sameAs":["https://www.linkedin.com/company/reintechio","https://clutch.co/profile/reintech"],"foundingDate":"2013-02-25","identifier":{"@type":"PropertyValue","propertyID":"Companies House","value":"08418922"},"address":{"@type":"PostalAddress","streetAddress":"31 Rutland Road","addressLocality":"London","postalCode":"E11 2DY","addressCountry":"GB"},"contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":"contact@reintech.io","url":"https://reintech.io/contact","availableLanguage":"en"},"areaServed":["GB","EU"],"knowsAbout":["Software engineering recruitment","Remote hiring","Contracting and payroll for remote engineers"]},{"@type":"WebSite","@id":"https://reintech.io/#website","url":"https://reintech.io/","name":"Reintech","publisher":{"@id":"https://reintech.io/#organization"},"inLanguage":"en"},{"@type":"WebPage","@id":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices","url":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices","name":"Go Project Structure 2026: Clean Architecture \u0026amp; Best Practices","description":"Learn modern Go project structure patterns for 2026. Practical guide to clean architecture, dependency management, and organizing Go code for production applications.","inLanguage":"en","isPartOf":{"@id":"https://reintech.io/#website"},"mainEntity":{"@id":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices#article"}},{"@type":"BlogPosting","@id":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices#article","mainEntityOfPage":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices","url":"https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices","headline":"Go Project Structure 2026: Clean Architecture and Best Practices","description":"Learn modern Go project structure patterns for 2026. Practical guide to clean architecture, dependency management, and organizing Go code for production applications.","datePublished":"2026-03-13T08:00:10Z","dateModified":"2026-06-13T18:12:40Z","author":{"@type":"Person","name":"Arthur C. Codex"},"publisher":{"@id":"https://reintech.io/#organization"},"image":["https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-1200.jpg","https://reintech.io/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-og.jpg"],"articleSection":["Engineering"],"inLanguage":"en"}]}</script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Reintech">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="UQfNP60vuYuvyV-5T8jOk8guP_HgKJKK80v7s7einVp0To2wug7pscm5fQa4iqJY8HrKwcZO95OFZs4W5_a06A" />
+    <meta name="csp-nonce" />
+
+        <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Go Project Structure 2026: Clean Architecture and Best Practices">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/application-7a602246.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/company/level_selector-8f4ded08.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/company/spectrum-ac1da5bf.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/company/mini_spectrum-28ba4308.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/company/job_list-0b80027b.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/web/tokens-3ec67cf6.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/web/landing-ae3f8c31.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/web/resources-83350743.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/markdown-dae79786.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/attachment_viewer-b85b21e1.css" data-turbo-track="reload" />
+<link rel="stylesheet" href="/assets/tailwind-58040358.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c5e86c04.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-9fd88cd5.js",
+    "turbo_confirm": "/assets/turbo_confirm-e627ac48.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-4b1e420e.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-1fc53fe7.js",
+    "highlight.js": "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/highlight.min.js",
+    "livekit-client": "https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/dist/livekit-client.esm.mjs",
+    "controllers/application": "/assets/controllers/application-3affb389.js",
+    "controllers/attachment_viewer_controller": "/assets/controllers/attachment_viewer_controller-32716ccf.js",
+    "controllers/auto_submit_controller": "/assets/controllers/auto_submit_controller-da92a015.js",
+    "controllers/clickable_row_controller": "/assets/controllers/clickable_row_controller-50f84bb2.js",
+    "controllers/clipboard_controller": "/assets/controllers/clipboard_controller-161a4a08.js",
+    "controllers/company_job_spectrum_controller": "/assets/controllers/company_job_spectrum_controller-d8ee6e75.js",
+    "controllers/cookie_consent_controller": "/assets/controllers/cookie_consent_controller-7e1e19ea.js",
+    "controllers/cv_viewer_controller": "/assets/controllers/cv_viewer_controller-e745151d.js",
+    "controllers/dashboard/mobile_inner_menu_controller": "/assets/controllers/dashboard/mobile_inner_menu_controller-232e48f1.js",
+    "controllers/dashboard/sidebar_controller": "/assets/controllers/dashboard/sidebar_controller-63dc0fdd.js",
+    "controllers/dashboard/submenu_controller": "/assets/controllers/dashboard/submenu_controller-55212148.js",
+    "controllers/dashboard/telegram_connection_controller": "/assets/controllers/dashboard/telegram_connection_controller-2735dc11.js",
+    "controllers/dashboard/user_menu_controller": "/assets/controllers/dashboard/user_menu_controller-fec7c145.js",
+    "controllers/dialog_controller": "/assets/controllers/dialog_controller-0f7ae7e3.js",
+    "controllers/floating_tooltip_controller": "/assets/controllers/floating_tooltip_controller-79b4207d.js",
+    "controllers/google_sign_in_controller": "/assets/controllers/google_sign_in_controller-ae3d1648.js",
+    "controllers/inbox/side_panel_controller": "/assets/controllers/inbox/side_panel_controller-4645be64.js",
+    "controllers": "/assets/controllers/index-2d06300d.js",
+    "controllers/job_application_note_form_controller": "/assets/controllers/job_application_note_form_controller-4b5d7933.js",
+    "controllers/recruiter_note_form_controller": "/assets/controllers/recruiter_note_form_controller-4f9a6809.js",
+    "controllers/recruiter_role_edit_controller": "/assets/controllers/recruiter_role_edit_controller-2f8d9d2b.js",
+    "controllers/recruiters/kanban_controller": "/assets/controllers/recruiters/kanban_controller-bf9e75fb.js",
+    "controllers/recruiters/talent_filter_controller": "/assets/controllers/recruiters/talent_filter_controller-aa32ff40.js",
+    "controllers/talents/autosave_controller": "/assets/controllers/talents/autosave_controller-ee282881.js",
+    "controllers/talents/axis_order_controller": "/assets/controllers/talents/axis_order_controller-f33b7b56.js",
+    "controllers/talents/chip_select_controller": "/assets/controllers/talents/chip_select_controller-8304ec40.js",
+    "controllers/talents/radar_range_controller": "/assets/controllers/talents/radar_range_controller-a8720dec.js",
+    "controllers/talents/spec_picker_controller": "/assets/controllers/talents/spec_picker_controller-1752710e.js",
+    "controllers/talents/spectrum_edit_controller": "/assets/controllers/talents/spectrum_edit_controller-a3279cfd.js",
+    "controllers/talents/tags_input_controller": "/assets/controllers/talents/tags_input_controller-14cdc34c.js",
+    "controllers/talents/tracker_controller": "/assets/controllers/talents/tracker_controller-9624f01a.js",
+    "controllers/talents/voice_room_controller": "/assets/controllers/talents/voice_room_controller-0c95e0b1.js",
+    "controllers/turnstile_controller": "/assets/controllers/turnstile_controller-c322fafa.js",
+    "controllers/web/apply_controller": "/assets/controllers/web/apply_controller-d3259c06.js",
+    "controllers/web/back_on_escape_controller": "/assets/controllers/web/back_on_escape_controller-83824175.js",
+    "controllers/web/blog_code_controller": "/assets/controllers/web/blog_code_controller-dcc06427.js",
+    "controllers/web/blog_promo_controller": "/assets/controllers/web/blog_promo_controller-2d3c44c0.js",
+    "controllers/web/booking_controller": "/assets/controllers/web/booking_controller-684d8538.js",
+    "controllers/web/client_tabs_controller": "/assets/controllers/web/client_tabs_controller-3a3fa647.js",
+    "controllers/web/contact_form_controller": "/assets/controllers/web/contact_form_controller-f055e0f5.js",
+    "controllers/web/copy_prompt_controller": "/assets/controllers/web/copy_prompt_controller-1f6dec81.js",
+    "controllers/web/email_edit_controller": "/assets/controllers/web/email_edit_controller-3c5a6997.js",
+    "controllers/web/hero_spectrum_controller": "/assets/controllers/web/hero_spectrum_controller-4012b0b1.js",
+    "controllers/web/jobs_filter_controller": "/assets/controllers/web/jobs_filter_controller-c05af4ef.js",
+    "controllers/web/mini_spectrum_controller": "/assets/controllers/web/mini_spectrum_controller-a515e34a.js",
+    "controllers/web/nav_controller": "/assets/controllers/web/nav_controller-80ecec5a.js",
+    "controllers/web/seo_toc_controller": "/assets/controllers/web/seo_toc_controller-9dd20d6b.js",
+    "controllers/web/spectrum_playground_controller": "/assets/controllers/web/spectrum_playground_controller-2949fe13.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/application-c5e86c04.js">
+<link rel="modulepreload" href="/assets/turbo.min-9fd88cd5.js">
+<link rel="modulepreload" href="/assets/turbo_confirm-e627ac48.js">
+<link rel="modulepreload" href="/assets/stimulus.min-4b1e420e.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-1fc53fe7.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/highlight.min.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/livekit-client@2.22.3/dist/livekit-client.esm.mjs">
+<link rel="modulepreload" href="/assets/controllers/application-3affb389.js">
+<link rel="modulepreload" href="/assets/controllers/attachment_viewer_controller-32716ccf.js">
+<link rel="modulepreload" href="/assets/controllers/auto_submit_controller-da92a015.js">
+<link rel="modulepreload" href="/assets/controllers/clickable_row_controller-50f84bb2.js">
+<link rel="modulepreload" href="/assets/controllers/clipboard_controller-161a4a08.js">
+<link rel="modulepreload" href="/assets/controllers/company_job_spectrum_controller-d8ee6e75.js">
+<link rel="modulepreload" href="/assets/controllers/cookie_consent_controller-7e1e19ea.js">
+<link rel="modulepreload" href="/assets/controllers/cv_viewer_controller-e745151d.js">
+<link rel="modulepreload" href="/assets/controllers/dashboard/mobile_inner_menu_controller-232e48f1.js">
+<link rel="modulepreload" href="/assets/controllers/dashboard/sidebar_controller-63dc0fdd.js">
+<link rel="modulepreload" href="/assets/controllers/dashboard/submenu_controller-55212148.js">
+<link rel="modulepreload" href="/assets/controllers/dashboard/telegram_connection_controller-2735dc11.js">
+<link rel="modulepreload" href="/assets/controllers/dashboard/user_menu_controller-fec7c145.js">
+<link rel="modulepreload" href="/assets/controllers/dialog_controller-0f7ae7e3.js">
+<link rel="modulepreload" href="/assets/controllers/floating_tooltip_controller-79b4207d.js">
+<link rel="modulepreload" href="/assets/controllers/google_sign_in_controller-ae3d1648.js">
+<link rel="modulepreload" href="/assets/controllers/inbox/side_panel_controller-4645be64.js">
+<link rel="modulepreload" href="/assets/controllers/index-2d06300d.js">
+<link rel="modulepreload" href="/assets/controllers/job_application_note_form_controller-4b5d7933.js">
+<link rel="modulepreload" href="/assets/controllers/recruiter_note_form_controller-4f9a6809.js">
+<link rel="modulepreload" href="/assets/controllers/recruiter_role_edit_controller-2f8d9d2b.js">
+<link rel="modulepreload" href="/assets/controllers/recruiters/kanban_controller-bf9e75fb.js">
+<link rel="modulepreload" href="/assets/controllers/recruiters/talent_filter_controller-aa32ff40.js">
+<link rel="modulepreload" href="/assets/controllers/talents/autosave_controller-ee282881.js">
+<link rel="modulepreload" href="/assets/controllers/talents/axis_order_controller-f33b7b56.js">
+<link rel="modulepreload" href="/assets/controllers/talents/chip_select_controller-8304ec40.js">
+<link rel="modulepreload" href="/assets/controllers/talents/radar_range_controller-a8720dec.js">
+<link rel="modulepreload" href="/assets/controllers/talents/spec_picker_controller-1752710e.js">
+<link rel="modulepreload" href="/assets/controllers/talents/spectrum_edit_controller-a3279cfd.js">
+<link rel="modulepreload" href="/assets/controllers/talents/tags_input_controller-14cdc34c.js">
+<link rel="modulepreload" href="/assets/controllers/talents/tracker_controller-9624f01a.js">
+<link rel="modulepreload" href="/assets/controllers/talents/voice_room_controller-0c95e0b1.js">
+<link rel="modulepreload" href="/assets/controllers/turnstile_controller-c322fafa.js">
+<link rel="modulepreload" href="/assets/controllers/web/apply_controller-d3259c06.js">
+<link rel="modulepreload" href="/assets/controllers/web/back_on_escape_controller-83824175.js">
+<link rel="modulepreload" href="/assets/controllers/web/blog_code_controller-dcc06427.js">
+<link rel="modulepreload" href="/assets/controllers/web/blog_promo_controller-2d3c44c0.js">
+<link rel="modulepreload" href="/assets/controllers/web/booking_controller-684d8538.js">
+<link rel="modulepreload" href="/assets/controllers/web/client_tabs_controller-3a3fa647.js">
+<link rel="modulepreload" href="/assets/controllers/web/contact_form_controller-f055e0f5.js">
+<link rel="modulepreload" href="/assets/controllers/web/copy_prompt_controller-1f6dec81.js">
+<link rel="modulepreload" href="/assets/controllers/web/email_edit_controller-3c5a6997.js">
+<link rel="modulepreload" href="/assets/controllers/web/hero_spectrum_controller-4012b0b1.js">
+<link rel="modulepreload" href="/assets/controllers/web/jobs_filter_controller-c05af4ef.js">
+<link rel="modulepreload" href="/assets/controllers/web/mini_spectrum_controller-a515e34a.js">
+<link rel="modulepreload" href="/assets/controllers/web/nav_controller-80ecec5a.js">
+<link rel="modulepreload" href="/assets/controllers/web/seo_toc_controller-9dd20d6b.js">
+<link rel="modulepreload" href="/assets/controllers/web/spectrum_playground_controller-2949fe13.js">
+<script type="module">import "application"</script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="async" defer="defer"></script>
+
+      <script>var clicky_custom = clicky_custom || {}; clicky_custom.cookies_disable = 1;</script>
+      <script async src="https://static.getclicky.com/101420542.js" data-testid="clicky"></script>
+
+  </head>
+
+  <body class="web-body web-blog-page">
+
+    <nav class="web-nav" data-controller="web--nav">
+  <div class="web-container web-nav-inner">
+    <a href="/" class="web-nav-brand" aria-label="Reintech home">
+      <svg viewBox="0 0 168 23" height="20" width="146"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     class="web-brand-logo " role="img" aria-label="Reintech">
+  <path d="M58.7132 20.4011H55.3785V15.0094C55.3785 14.5986 55.2691 14.2648 55.0501 14.0081C54.848 13.7513 54.5028 13.623 54.0144 13.623H50.1745V20.4011H46.8398V2.42878H53.6102C54.5196 2.42878 55.3196 2.55716 56.0101 2.8139C56.7006 3.07065 57.2732 3.4301 57.7279 3.89224C58.1995 4.33727 58.5532 4.85933 58.7889 5.4584C59.0416 6.05748 59.1679 6.69935 59.1679 7.38401V8.00021C59.1679 8.73621 58.9742 9.42943 58.5868 10.0799C58.1995 10.7132 57.6016 11.201 56.7932 11.5433V12.0055C57.3827 12.0739 57.8458 12.305 58.1826 12.6987C58.5363 13.0924 58.7132 13.5887 58.7132 14.1878V20.4011ZM50.1745 10.388H53.3575C54.1659 10.388 54.7806 10.1997 55.2017 9.82311C55.6227 9.42943 55.8332 8.8817 55.8332 8.17993V7.87183C55.8332 7.27275 55.6227 6.75926 55.2017 6.33135C54.7806 5.88632 54.1659 5.6638 53.3575 5.6638H50.1745V10.388Z" fill="currentColor"/>
+  <path d="M62.5355 2.42878H73.7014V5.6638H65.8701V9.77176H73.3983V13.0068H65.8701V17.1661H74.0046V20.4011H62.5355V2.42878Z" fill="currentColor"/>
+  <path d="M77.7511 2.42878H89.5739V5.6638H85.3298V17.1661H89.5739V20.4011H77.7511V17.1661H81.9952V5.6638H77.7511V2.42878Z" fill="currentColor"/>
+  <path d="M101.531 18.7066H101.985V2.42878H105.32V20.4011H98.8023L96.7308 4.12332H96.2761V20.4011H92.9415V2.42878H99.4592L101.531 18.7066Z" fill="currentColor"/>
+  <path d="M108.233 2.42878H120.965V5.6638H116.266V20.4011H112.932V5.6638H108.233V2.42878Z" fill="currentColor"/>
+  <path d="M124.409 2.42878H135.574V5.6638H127.743V9.77176H135.271V13.0068H127.743V17.1661H135.878V20.4011H124.409V2.42878Z" fill="currentColor"/>
+  <path d="M145.586 17.6796C146.226 17.6796 146.748 17.5854 147.152 17.3972C147.573 17.1918 147.893 16.9265 148.112 16.6012C148.348 16.2589 148.508 15.8738 148.592 15.4459C148.676 15.0009 148.719 14.5473 148.719 14.0851V13.623H152.053V14.0851C152.053 16.2247 151.497 17.8764 150.386 19.0403C149.291 20.1872 147.691 20.7606 145.586 20.7606C143.565 20.7606 141.965 20.1358 140.786 18.8863C139.607 17.6368 139.018 15.8139 139.018 13.4176V9.41232C139.018 8.26551 139.169 7.23852 139.473 6.33135C139.776 5.40705 140.214 4.63681 140.786 4.02062C141.359 3.38731 142.049 2.90805 142.858 2.58283C143.666 2.2405 144.576 2.06934 145.586 2.06934C146.63 2.06934 147.557 2.22338 148.365 2.53148C149.173 2.83958 149.847 3.28461 150.386 3.86657C150.942 4.44853 151.354 5.15031 151.624 5.9719C151.91 6.79349 152.053 7.71778 152.053 8.74477V9.20692H148.719V8.74477C148.719 8.31686 148.668 7.88895 148.567 7.46104C148.466 7.03312 148.298 6.648 148.062 6.30567C147.826 5.96334 147.506 5.68948 147.102 5.48408C146.698 5.26156 146.192 5.15031 145.586 5.15031C145.03 5.15031 144.55 5.26156 144.146 5.48408C143.742 5.68948 143.405 5.98046 143.136 6.35702C142.866 6.71647 142.664 7.14438 142.529 7.64076C142.411 8.12002 142.352 8.62496 142.352 9.15557V13.6743C142.352 14.2563 142.411 14.7955 142.529 15.2918C142.647 15.7711 142.832 16.1905 143.085 16.5499C143.338 16.9093 143.666 17.1918 144.07 17.3972C144.491 17.5854 144.997 17.6796 145.586 17.6796Z" fill="currentColor"/>
+  <path d="M154.815 2.42878H158.149V9.77176H163.858V2.42878H167.193V20.4011H163.858V13.0068H158.149V20.4011H154.815V2.42878Z" fill="currentColor"/>
+  <path d="M9.87052 23C11.7363 23 13.5261 22.2609 14.8483 20.9444L35.8826 2.37826e-07L30.4417 0C28.5759 -8.15565e-08 26.7861 0.739123 25.464 2.05561L4.42969 23H9.87052Z" fill="#2F6EF6"/>
+  <path d="M21.7763 2.13867L10.415 13.4862C9.09219 14.8074 7.2991 15.5495 5.42955 15.5495H0L11.3614 4.20191C12.6842 2.88075 14.4773 2.13867 16.3468 2.13867L21.7763 2.13867Z" fill="#5F98FF"/>
+  <path d="M23.3227 21.4873C25.1868 21.4873 26.975 20.7496 28.2969 19.4353L34.1273 13.6382L28.6835 13.6382C26.8195 13.6382 25.0312 14.3759 23.7094 15.6902L17.8789 21.4873H23.3227Z" fill="#F9B83A"/>
+</svg>
+
+    </a>
+
+
+    <div class="web-nav-links" id="web-nav-links" data-web--nav-target="panel">
+        <a href="/" class="web-nav-link "
+           data-action="click->web--nav#close">For companies</a>
+        <a href="/talent" class="web-nav-link "
+           data-action="click->web--nav#close">For engineers</a>
+        <a href="/jobs" class="web-nav-link "
+           data-action="click->web--nav#close">Open roles</a>
+        <a href="/resources" class="web-nav-link "
+           data-action="click->web--nav#close">Resources</a>
+    </div>
+
+    <button type="button"
+            class="web-nav-toggle"
+            data-action="click->web--nav#toggle"
+            data-web--nav-target="toggle"
+            aria-label="Toggle navigation"
+            aria-controls="web-nav-links"
+            aria-expanded="false">
+      <span class="web-nav-toggle-bar"></span>
+      <span class="web-nav-toggle-bar"></span>
+      <span class="web-nav-toggle-bar"></span>
+    </button>
+  </div>
+</nav>
+
+    <div class="web-cookie-banner" role="dialog" aria-label="Cookies" data-controller="cookie-consent" data-cookie-consent-gtm-value="GTM-PJQPGJF" data-testid="cookie-banner">
+  <div class="web-container web-cookie-banner-inner">
+    <p class="web-cookie-banner-text">
+      We use a few cookies to keep the site working and, if you agree, Google Analytics to see which pages help. Nothing for advertising.
+      <a href="/privacy-policy#cookies" class="web-inline-link">What each one does</a>.
+    </p>
+    <div class="web-cookie-banner-actions">
+      <button type="button" class="web-btn web-btn-ghost web-btn-sm" data-action="cookie-consent#decline" data-testid="cookie-decline">Only necessary</button>
+      <button type="button" class="web-btn web-btn-primary web-btn-sm" data-action="cookie-consent#accept" data-testid="cookie-accept">Accept analytics</button>
+    </div>
+  </div>
+</div>
+
+
+    <main id="main">
+      
+<article class="web-section web-light web-blog-article web-section--flush">
+  <div class="web-container-narrow">
+    <div data-controller="web--blog-promo">
+      <a href="https://sbondar.com/variety/" target="_blank" rel="noopener" class="web-blog-promo"
+         data-web--blog-promo-target="banner">
+        <span class="web-blog-promo-text">
+          <span class="web-blog-promo-eyebrow mono">The book for engineers</span>
+          <span class="web-blog-promo-title">Requisite Variety</span>
+          <span class="web-blog-promo-sub">The Systems Method for Working with AI — Beyond Prompts and Tools</span>
+        </span>
+        <span class="web-blog-promo-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a href="https://sbondar.com/variety/" target="_blank" rel="noopener"
+         class="web-blog-promo web-blog-promo--float" data-web--blog-promo-target="float">
+        <span class="web-blog-promo-text">
+          <span class="web-blog-promo-eyebrow mono">The book for engineers</span>
+          <span class="web-blog-promo-title">Requisite Variety</span>
+          <span class="web-blog-promo-sub">The Systems Method for Working with AI</span>
+        </span>
+        <button type="button" class="web-blog-promo-close" aria-label="Dismiss"
+                data-action="web--blog-promo#dismiss">×</button>
+      </a>
+    </div>
+
+    <a href="/blog" class="web-blog-back">← All posts</a>
+
+    <header class="web-blog-head">
+        <div class="web-blog-head-cats">
+            <a class="web-blog-chip is-active" href="/blog?category=engineering">Engineering</a>
+        </div>
+
+      <h1 class="web-blog-title">Go Project Structure 2026: Clean Architecture and Best Practices</h1>
+
+      <div class="web-blog-meta mono">
+        <span>Arthur C. Codex</span>
+        <span>March 13, 2026</span>
+      </div>
+    </header>
+
+    <div class="web-blog-prose" data-controller="web--blog-code">
+      
+<p>You've probably refactored your Go project structure at least twice in the past year. Maybe you started with everything in one package, then split it into folders by feature, then tried clean architecture, and now you're wondering if there's actually a "right" way to organize Go code in 2026.</p><div class="web-blog-hero-img"><picture><source type="image/webp" srcset="/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-800.webp 800w, /blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-1200.webp 1200w" sizes="(min-width: 880px) 816px, calc(100vw - 40px)"><img src="/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-1200.jpg" srcset="/blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-800.jpg 800w, /blog/go-project-structure-2026-clean-architecture-best-practices/image/18973dec6b62-1200.jpg 1200w" sizes="(min-width: 880px) 816px, calc(100vw - 40px)" width="1200" height="675" alt="Go Project Structure 2026: Clean Architecture and Best Practices" decoding="async"></picture></div>
+
+<p>The truth is, Go's flexibility in project structure is both a blessing and a curse. Unlike frameworks that enforce strict conventions, Go gives you freedom—which means you need to make informed decisions about how to organize your codebase. After building and scaling multiple Go services, I've learned that the best structure isn't about following a template blindly, but understanding the principles that make your code maintainable as your team and product grow.</p>
+
+<p>Let's explore modern Go project structure patterns that actually work in production environments, focusing on clean architecture principles adapted for Go's idioms and the realities of 2026's development landscape.</p>
+
+<h2>Why Project Structure Matters More Than You Think</h2>
+
+<p>Your project structure is the first thing new developers see when they join your team. It's also the framework that either enables or fights against your development velocity as the codebase grows. A well-structured project communicates intent, enforces boundaries, and makes it obvious where new code should live.</p>
+
+<p>I've seen teams struggle for months with circular dependencies, unclear ownership, and "god packages" that everyone is afraid to touch. These aren't just annoyances—they're productivity killers that slow down feature development and make bugs harder to track down.</p>
+
+<p>The goal isn't to create the most elegant folder hierarchy. It's to build a structure that supports your team's workflow, makes testing easier, and allows different parts of your system to evolve independently. If you're scaling your engineering team and need experienced developers who understand these principles, consider working with <a href="https://reintech.io/contractors">vetted remote engineers</a> who can hit the ground running with well-architected Go projects.</p>
+
+<h2>The Standard Go Project Layout in 2026</h2>
+
+<p>The Go community has largely converged around a standard project layout that works for most applications. This isn't enforced by the language, but it's become the de facto standard for good reasons.</p>
+
+<h3>Core Directories</h3>
+
+<p>Here's what a modern Go project structure looks like:</p>
+
+<pre><code class="language-txt">
+myproject/
+├── cmd/
+│   ├── api/
+│   │   └── main.go
+│   └── worker/
+│       └── main.go
+├── internal/
+│   ├── domain/
+│   ├── repository/
+│   ├── service/
+│   └── handler/
+├── pkg/
+│   └── utils/
+├── api/
+│   └── openapi.yaml
+├── config/
+├── migrations/
+├── scripts/
+├── tests/
+├── go.mod
+└── go.sum
+</code></pre>
+
+<p>Let's break down each directory and understand why it exists:</p>
+
+<h3>/cmd - Application Entry Points</h3>
+
+<p>The <code>cmd</code> directory contains your application entry points. Each subdirectory represents a different executable. This is where your <code>main.go</code> files live, and they should be thin—just wiring up dependencies and starting the application.</p>
+
+<pre><code class="language-go">
+// cmd/api/main.go
+package main
+
+import (
+    "log"
+    "myproject/internal/handler"
+    "myproject/internal/repository"
+    "myproject/internal/service"
+)
+
+func main() {
+    // Initialize dependencies
+    db := initDatabase()
+    
+    // Build layers from inside out
+    userRepo := repository.NewUserRepository(db)
+    userService := service.NewUserService(userRepo)
+    userHandler := handler.NewUserHandler(userService)
+    
+    // Start server
+    server := newServer(userHandler)
+    log.Fatal(server.Start(":8080"))
+}
+</code></pre>
+
+<p>Keep your <code>main.go</code> focused on dependency injection and application bootstrap. Business logic belongs elsewhere.</p>
+
+<h3>/internal - Private Application Code</h3>
+
+<p>This is where your core application code lives. The <code>internal</code> directory is special in Go—code here cannot be imported by external projects. This enforces boundaries and prevents your internal implementation details from becoming public API.</p>
+
+<p>Inside <code>internal</code>, organize by layer or domain, not by type. Instead of having all your models in one place and all your handlers in another, group related functionality together.</p>
+
+<h3>/pkg - Public Reusable Code</h3>
+
+<p>The <code>pkg</code> directory contains code that could be used by external applications. Be intentional about what you put here—anything in <code>pkg</code> is essentially public API. If you're not sure whether something should be public, put it in <code>internal</code> first.</p>
+
+<h2>Clean Architecture Adapted for Go</h2>
+
+<p>Clean architecture isn't about creating the perfect circle diagram—it's about dependency management and separation of concerns. In Go, we adapt these principles to work with the language's idioms rather than against them.</p>
+
+<h3>The Core Principle: Dependency Inversion</h3>
+
+<p>The fundamental rule is simple: dependencies point inward. Your business logic (domain layer) doesn't depend on your database or HTTP handlers. Instead, those outer layers depend on interfaces defined by your business logic.</p>
+
+<pre><code class="language-txt">
+┌─────────────────────────────────────┐
+│         Handlers (HTTP/gRPC)        │
+│         External Interfaces         │
+└──────────────┬──────────────────────┘
+               │ depends on
+               ▼
+┌─────────────────────────────────────┐
+│      Services (Business Logic)      │
+│         Application Layer           │
+└──────────────┬──────────────────────┘
+               │ depends on
+               ▼
+┌─────────────────────────────────────┐
+│    Domain (Entities &amp; Interfaces)   │
+│           Core Layer                │
+└─────────────────────────────────────┘
+               ▲
+               │ implements
+┌──────────────┴──────────────────────┐
+│    Repository (Data Access)         │
+│         Infrastructure              │
+└─────────────────────────────────────┘
+</code></pre>
+
+<h3>Domain Layer: Your Business Core</h3>
+
+<p>The domain layer contains your business entities and the interfaces they need. This is the most stable part of your codebase—it changes when business requirements change, not when you switch databases or frameworks.</p>
+
+<pre><code class="language-go">
+// internal/domain/user.go
+package domain
+
+import "time"
+
+type User struct {
+    ID        string
+    Email     string
+    Name      string
+    CreatedAt time.Time
+}
+
+// UserRepository defines what the domain needs from storage
+// The domain defines this interface, infrastructure implements it
+type UserRepository interface {
+    Create(user *User) error
+    FindByID(id string) (*User, error)
+    FindByEmail(email string) (*User, error)
+}
+</code></pre>
+
+<p>Notice that the domain defines the repository interface. This is dependency inversion in action—the domain doesn't depend on the database implementation, the database implementation depends on what the domain needs.</p>
+
+<h3>Service Layer: Application Logic</h3>
+
+<p>Services orchestrate domain entities and coordinate between different repositories. They implement use cases and business workflows.</p>
+
+<pre><code class="language-go">
+// internal/service/user_service.go
+package service
+
+import (
+    "errors"
+    "myproject/internal/domain"
+)
+
+type UserService struct {
+    userRepo domain.UserRepository
+}
+
+func NewUserService(repo domain.UserRepository) *UserService {
+    return &amp;UserService{userRepo: repo}
+}
+
+func (s *UserService) RegisterUser(email, name string) (*domain.User, error) {
+    // Check if user exists
+    existing, _ := s.userRepo.FindByEmail(email)
+    if existing != nil {
+        return nil, errors.New("user already exists")
+    }
+    
+    // Create new user
+    user := &amp;domain.User{
+        Email: email,
+        Name:  name,
+    }
+    
+    if err := s.userRepo.Create(user); err != nil {
+        return nil, err
+    }
+    
+    return user, nil
+}
+</code></pre>
+
+<p>Services depend on repository interfaces, not concrete implementations. This makes testing trivial—you can mock the repository without any special frameworks.</p>
+
+<h3>Repository Layer: Data Access</h3>
+
+<p>Repositories implement the interfaces defined in the domain layer. They handle all the messy details of data persistence.</p>
+
+<pre><code class="language-go">
+// internal/repository/user_repository.go
+package repository
+
+import (
+    "database/sql"
+    "myproject/internal/domain"
+)
+
+type PostgresUserRepository struct {
+    db *sql.DB
+}
+
+func NewUserRepository(db *sql.DB) domain.UserRepository {
+    return &amp;PostgresUserRepository{db: db}
+}
+
+func (r *PostgresUserRepository) Create(user *domain.User) error {
+    query := `INSERT INTO users (id, email, name, created_at) 
+              VALUES ($1, $2, $3, $4)`
+    
+    _, err := r.db.Exec(query, user.ID, user.Email, user.Name, user.CreatedAt)
+    return err
+}
+
+func (r *PostgresUserRepository) FindByEmail(email string) (*domain.User, error) {
+    // Implementation details...
+    return nil, nil
+}
+</code></pre>
+
+<p>The key insight here is that the repository returns domain entities, not database models. The translation from database rows to domain objects happens inside the repository.</p>
+
+<h3>Handler Layer: External Interfaces</h3>
+
+<p>Handlers translate between the outside world (HTTP, gRPC, message queues) and your application services. They handle serialization, validation, and error translation.</p>
+
+<pre><code class="language-go">
+// internal/handler/user_handler.go
+package handler
+
+import (
+    "encoding/json"
+    "myproject/internal/service"
+    "net/http"
+)
+
+type UserHandler struct {
+    userService *service.UserService
+}
+
+func NewUserHandler(service *service.UserService) *UserHandler {
+    return &amp;UserHandler{userService: service}
+}
+
+func (h *UserHandler) Register(w http.ResponseWriter, r *http.Request) {
+    var req struct {
+        Email string `json:"email"`
+        Name  string `json:"name"`
+    }
+    
+    if err := json.NewDecoder(r.Body).Decode(&amp;req); err != nil {
+        http.Error(w, "invalid request", http.StatusBadRequest)
+        return
+    }
+    
+    user, err := h.userService.RegisterUser(req.Email, req.Name)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    
+    json.NewEncoder(w).Encode(user)
+}
+</code></pre>
+
+<h2>Practical Patterns for Real Projects</h2>
+
+<p>Theory is nice, but here are the patterns that actually matter when you're shipping code.</p>
+
+<h3>Configuration Management</h3>
+
+<p>Don't scatter configuration across your codebase. Create a single configuration package that loads from environment variables or config files.</p>
+
+<pre><code class="language-go">
+// internal/config/config.go
+package config
+
+import "os"
+
+type Config struct {
+    DatabaseURL string
+    Port        string
+    JWTSecret   string
+}
+
+func Load() (*Config, error) {
+    return &amp;Config{
+        DatabaseURL: getEnv("DATABASE_URL", "postgres://localhost/mydb"),
+        Port:        getEnv("PORT", "8080"),
+        JWTSecret:   getEnv("JWT_SECRET", ""),
+    }, nil
+}
+
+func getEnv(key, defaultVal string) string {
+    if val := os.Getenv(key); val != "" {
+        return val
+    }
+    return defaultVal
+}
+</code></pre>
+
+<h3>Error Handling Strategy</h3>
+
+<p>Define domain-specific errors that carry meaning, not just strings. This makes error handling consistent and allows different layers to make intelligent decisions.</p>
+
+<pre><code class="language-go">
+// internal/domain/errors.go
+package domain
+
+import "errors"
+
+var (
+    ErrNotFound      = errors.New("resource not found")
+    ErrAlreadyExists = errors.New("resource already exists")
+    ErrUnauthorized  = errors.New("unauthorized")
+)
+</code></pre>
+
+<h3>Testing Structure</h3>
+
+<p>Mirror your source structure in tests, but also create integration test directories for end-to-end scenarios.</p>
+
+<pre><code class="language-txt">
+tests/
+├── integration/
+│   ├── api_test.go
+│   └── database_test.go
+└── fixtures/
+    └── test_data.sql
+</code></pre>
+
+<p>Unit tests live next to the code they test. Integration tests live in the <code>tests</code> directory and can import from <code>internal</code> since they're part of the same module.</p>
+
+<h2>Common Pitfalls to Avoid</h2>
+
+<h3>Over-Engineering Early</h3>
+
+<p>Don't create 15 layers of abstraction for a simple CRUD app. Start simple and refactor as complexity grows. It's easier to split packages than to merge them.</p>
+
+<h3>Circular Dependencies</h3>
+
+<p>If you find yourself with circular imports, it's a sign that your boundaries are wrong. Usually, you need to extract shared types into a separate package or rethink your layering.</p>
+
+<h3>Leaky Abstractions</h3>
+
+<p>Don't let database models leak into your handlers. Each layer should translate types as they cross boundaries. Yes, this means some mapping code, but it keeps layers independent.</p>
+
+<h2>Migration Strategy for Existing Projects</h2>
+
+<p>You don't have to refactor everything at once. Here's a practical approach:</p>
+
+<ol>
+    <li><b>Start with new features:</b> Implement new functionality using the clean structure. This proves the pattern works for your team.</li>
+    <li><b>Extract domain logic:</b> Move business logic out of handlers into service functions. Don't worry about perfect interfaces yet.</li>
+    <li><b>Define interfaces:</b> Once services are extracted, define repository interfaces and implement them.</li>
+    <li><b>Move packages:</b> Gradually move code into <code>internal</code> with proper layering. Do this feature by feature, not all at once.</li>
+</ol>
+
+<h2>Tools and Automation</h2>
+
+<p>Use tools to enforce your structure decisions:</p>
+
+<ul>
+    <li><b>golangci-lint:</b> Configure linters to catch common issues like import cycles</li>
+    <li><b>go mod graph:</b> Visualize dependencies to spot problems early</li>
+    <li><b>Make or Task:</b> Create commands for common operations like running tests, migrations, or generating code</li>
+</ul>
+
+<h2>What to Do Next</h2>
+
+<p>Pick one service or feature in your current project and try restructuring it using these principles. Don't aim for perfection—aim for improvement. Start with clear separation between handlers, services, and repositories.</p>
+
+<p>Create a simple diagram showing your current dependencies and where you want them to point. Share it with your team and get feedback. The best structure is one that your whole team understands and can work with effectively.</p>
+
+<p>If you're building a new project, use the standard layout from the start. It's easier to simplify later than to untangle a mess. And remember: the goal isn't to follow rules perfectly, it's to build software that's easy to change as your product evolves.</p>
+
+    </div>
+
+    <div class="web-blog-foot">
+      <a href="/blog" class="web-blog-back web-blog-foot-back">← Back to the blog</a>
+    </div>
+  </div>
+
+  <div class="web-container-narrow">
+    <aside class="web-blog-cta">
+      <div class="web-blog-cta-eyebrow eyebrow">For engineers</div>
+      <h2 class="web-blog-cta-title">Send us your CV, or just write.</h2>
+      <p class="web-blog-cta-copy">
+        Reintech runs on email. Send your CV and a line on what you're looking for: our agents reply within
+        minutes, and a recruiter is in the loop and interviews you in person. No portal, no profile to fill in,
+        no fee to you.
+      </p>
+      <div class="web-blog-cta-actions">
+        <a href="/talent#start" class="web-btn web-btn-primary web-btn-lg">Email your CV</a>
+        <a href="/" class="web-btn web-btn-ghost web-btn-lg">Hiring? See how it works</a>
+      </div>
+      <div class="web-email-alt web-email-alt--start" id="blog_email_alt" data-testid="email-alt" data-controller="clipboard" data-clipboard-text-value="hello@pulse.reintech.io">
+  <span class="web-email-alt-lead">Our address:</span>
+  <button type="button" class="web-email-alt-address mono" data-action="clipboard#copy" data-clipboard-target="button" data-testid="email-alt-address" title="Click to copy">hello@pulse.reintech.io</button>
+  <span class="web-email-alt-note">Click to copy. Attach your CV or LinkedIn PDF, and say what you&#39;re looking for.</span>
+</div>
+
+    </aside>
+  </div>
+</article>
+
+    </main>
+
+    <footer class="web-footer">
+  <div class="web-container web-footer-grid">
+    <div class="web-footer-brand-col">
+      <div class="web-footer-brand">
+        <svg viewBox="0 0 168 23" height="19" width="139"
+     fill="none" xmlns="http://www.w3.org/2000/svg"
+     class="web-brand-logo " role="img" aria-label="Reintech">
+  <path d="M58.7132 20.4011H55.3785V15.0094C55.3785 14.5986 55.2691 14.2648 55.0501 14.0081C54.848 13.7513 54.5028 13.623 54.0144 13.623H50.1745V20.4011H46.8398V2.42878H53.6102C54.5196 2.42878 55.3196 2.55716 56.0101 2.8139C56.7006 3.07065 57.2732 3.4301 57.7279 3.89224C58.1995 4.33727 58.5532 4.85933 58.7889 5.4584C59.0416 6.05748 59.1679 6.69935 59.1679 7.38401V8.00021C59.1679 8.73621 58.9742 9.42943 58.5868 10.0799C58.1995 10.7132 57.6016 11.201 56.7932 11.5433V12.0055C57.3827 12.0739 57.8458 12.305 58.1826 12.6987C58.5363 13.0924 58.7132 13.5887 58.7132 14.1878V20.4011ZM50.1745 10.388H53.3575C54.1659 10.388 54.7806 10.1997 55.2017 9.82311C55.6227 9.42943 55.8332 8.8817 55.8332 8.17993V7.87183C55.8332 7.27275 55.6227 6.75926 55.2017 6.33135C54.7806 5.88632 54.1659 5.6638 53.3575 5.6638H50.1745V10.388Z" fill="currentColor"/>
+  <path d="M62.5355 2.42878H73.7014V5.6638H65.8701V9.77176H73.3983V13.0068H65.8701V17.1661H74.0046V20.4011H62.5355V2.42878Z" fill="currentColor"/>
+  <path d="M77.7511 2.42878H89.5739V5.6638H85.3298V17.1661H89.5739V20.4011H77.7511V17.1661H81.9952V5.6638H77.7511V2.42878Z" fill="currentColor"/>
+  <path d="M101.531 18.7066H101.985V2.42878H105.32V20.4011H98.8023L96.7308 4.12332H96.2761V20.4011H92.9415V2.42878H99.4592L101.531 18.7066Z" fill="currentColor"/>
+  <path d="M108.233 2.42878H120.965V5.6638H116.266V20.4011H112.932V5.6638H108.233V2.42878Z" fill="currentColor"/>
+  <path d="M124.409 2.42878H135.574V5.6638H127.743V9.77176H135.271V13.0068H127.743V17.1661H135.878V20.4011H124.409V2.42878Z" fill="currentColor"/>
+  <path d="M145.586 17.6796C146.226 17.6796 146.748 17.5854 147.152 17.3972C147.573 17.1918 147.893 16.9265 148.112 16.6012C148.348 16.2589 148.508 15.8738 148.592 15.4459C148.676 15.0009 148.719 14.5473 148.719 14.0851V13.623H152.053V14.0851C152.053 16.2247 151.497 17.8764 150.386 19.0403C149.291 20.1872 147.691 20.7606 145.586 20.7606C143.565 20.7606 141.965 20.1358 140.786 18.8863C139.607 17.6368 139.018 15.8139 139.018 13.4176V9.41232C139.018 8.26551 139.169 7.23852 139.473 6.33135C139.776 5.40705 140.214 4.63681 140.786 4.02062C141.359 3.38731 142.049 2.90805 142.858 2.58283C143.666 2.2405 144.576 2.06934 145.586 2.06934C146.63 2.06934 147.557 2.22338 148.365 2.53148C149.173 2.83958 149.847 3.28461 150.386 3.86657C150.942 4.44853 151.354 5.15031 151.624 5.9719C151.91 6.79349 152.053 7.71778 152.053 8.74477V9.20692H148.719V8.74477C148.719 8.31686 148.668 7.88895 148.567 7.46104C148.466 7.03312 148.298 6.648 148.062 6.30567C147.826 5.96334 147.506 5.68948 147.102 5.48408C146.698 5.26156 146.192 5.15031 145.586 5.15031C145.03 5.15031 144.55 5.26156 144.146 5.48408C143.742 5.68948 143.405 5.98046 143.136 6.35702C142.866 6.71647 142.664 7.14438 142.529 7.64076C142.411 8.12002 142.352 8.62496 142.352 9.15557V13.6743C142.352 14.2563 142.411 14.7955 142.529 15.2918C142.647 15.7711 142.832 16.1905 143.085 16.5499C143.338 16.9093 143.666 17.1918 144.07 17.3972C144.491 17.5854 144.997 17.6796 145.586 17.6796Z" fill="currentColor"/>
+  <path d="M154.815 2.42878H158.149V9.77176H163.858V2.42878H167.193V20.4011H163.858V13.0068H158.149V20.4011H154.815V2.42878Z" fill="currentColor"/>
+  <path d="M9.87052 23C11.7363 23 13.5261 22.2609 14.8483 20.9444L35.8826 2.37826e-07L30.4417 0C28.5759 -8.15565e-08 26.7861 0.739123 25.464 2.05561L4.42969 23H9.87052Z" fill="#2F6EF6"/>
+  <path d="M21.7763 2.13867L10.415 13.4862C9.09219 14.8074 7.2991 15.5495 5.42955 15.5495H0L11.3614 4.20191C12.6842 2.88075 14.4773 2.13867 16.3468 2.13867L21.7763 2.13867Z" fill="#5F98FF"/>
+  <path d="M23.3227 21.4873C25.1868 21.4873 26.975 20.7496 28.2969 19.4353L34.1273 13.6382L28.6835 13.6382C26.8195 13.6382 25.0312 14.3759 23.7094 15.6902L17.8789 21.4873H23.3227Z" fill="#F9B83A"/>
+</svg>
+
+      </div>
+      <div class="web-footer-tagline">A recruiting system with a human inside. Engineering and go-to-market roles, remote and local. Contract and payroll handled.</div>
+    </div>
+      <div>
+        <div class="web-footer-col-title">For companies</div>
+          <div class="web-footer-col-link"><a href="/">For companies</a></div>
+          <div class="web-footer-col-link"><a href="/book">Book a call</a></div>
+          <div class="web-footer-col-link"><a href="/resources">Articles</a></div>
+          <div class="web-footer-col-link"><a href="/essays">Essays</a></div>
+      </div>
+      <div>
+        <div class="web-footer-col-title">For engineers</div>
+          <div class="web-footer-col-link"><a href="/talent">For engineers</a></div>
+          <div class="web-footer-col-link"><a href="/talent#start">Email your CV</a></div>
+          <div class="web-footer-col-link"><a href="/jobs">Open roles</a></div>
+          <div class="web-footer-col-link"><a href="/guild">The Reintech Guild</a></div>
+      </div>
+      <div>
+        <div class="web-footer-col-title">Company</div>
+          <div class="web-footer-col-link"><a href="/manifesto">Manifesto</a></div>
+          <div class="web-footer-col-link"><a href="/blog">Blog</a></div>
+          <div class="web-footer-col-link"><a href="/voices">Voices</a></div>
+          <div class="web-footer-col-link"><a href="/method">The method</a></div>
+          <div class="web-footer-col-link"><a href="/docs">Developer docs</a></div>
+          <div class="web-footer-col-link"><a href="/about">About Reintech</a></div>
+      </div>
+      <div>
+        <div class="web-footer-col-title">Contact</div>
+          <div class="web-footer-col-link"><a href="/contact">Contact</a></div>
+          <div class="web-footer-col-link"><a href="mailto:contact@reintech.io">contact@reintech.io</a></div>
+      </div>
+  </div>
+  <div class="web-container web-footer-legal">
+    <span class="mono">© 2026 reintech.io</span>
+      <a href="/privacy-policy" class="web-footer-legal-link">Privacy policy</a>
+      <a href="/terms" class="web-footer-legal-link">Terms of service</a>
+      <a href="/privacy-policy#cookies" class="web-footer-legal-link" data-controller="cookie-consent" data-action="cookie-consent#reset" data-testid="cookie-settings">Cookie settings</a>
+  </div>
+</footer>
+
+  </body>
+</html>

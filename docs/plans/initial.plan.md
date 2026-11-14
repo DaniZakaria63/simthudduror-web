@@ -1,6 +1,6 @@
 # Initial monolith foundation
 
-Status: principal interpretation drafted; external-reference research is in progress. Implementation acceptance requires the evidence below, not this document alone.
+Status: implemented and verified in the `feat/initialize` checkout (2026-11-14). Acceptance evidence below was observed on the final revision; two limitations remain explicit (deployment rate-limit identity and the low-severity registration enumeration).
 
 ## Prompt and repository analysis
 
@@ -64,12 +64,59 @@ Runtime checks cover persistence across restart, direct API authorization and va
 
 Codex is principal: architecture, plan, delegation, review, and acceptance. The single OpenCode worker owns application changes and fixes, using `opencode-go/deepseek-v4.1-flash#high`; verify the actual assistant-session model after execution. Antigravity owns external research and may write only its isolated research note/journal. Jev is used for typed advisory judgments around routing and review; its confidence is not authorization and never replaces source or test evidence.
 
-Research is currently active as task `task_6a00049242a6`, dispatch `ctx_960a7eaec30e`. The principal must review its findings and resolve remaining uncertainty before dispatching the final implementation scope. Use native Orca mailbox supervision, never launch a second principal or a polling scheduler.
+Research completed as task `task_6a00049242a6`, dispatch `ctx_960a7eaec30e`, with corrections reported under dispatch `ctx_85a2813d079a`. The principal reviewed `docs/research/initial.sources.md`, obtained and read the actual Cloudflare skill at `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`, and verified the official Go release manifest. Follow-up task `task_ce6807c04b69` resolved the two Medium access gaps through normal public-browser access; both Antigravity and principal read the full articles without credentials or bypass. Details are in `docs/research/initial.reference-verification.md`; the earlier direct-HTTP 403 observations remain historical transport evidence, not a current full-text limitation. Blog recommendations inform the adaptation but do not override this project's monolith and feature-boundary requirements. Use native Orca mailbox supervision, never launch a second principal or a polling scheduler.
 
-## Decisions still requiring evidence
+## Approved implementation decisions
 
-- Resolve actual access to every named reference and use only available content; unavailable links remain clearly identified.
-- Confirm a supported reproducible Go/Node toolchain and record the exact versions and local commands.
-- Finalize the auth/session/CSRF and storage details against the researched source/security guidance.
-- Choose and record the public landing-page direction before implementation.
-- At completion replace this draft status and fill in measured acceptance evidence; any unmet item keeps the goal active.
+- Use the existing dedicated `feat/initialize` branch and `/home/dani/WebstormProjects/maulid.id` worktree for this single prompt. No new checkout is necessary because there is no competing application work. Keep it after delivery until the user confirms merge.
+- Go **1.27.4**, verified against `https://go.dev/dl/?mode=json`, is installed at `/home/dani/.local/share/maulid-toolchains/go1.27.4/go/bin/go`. The official Linux amd64 archive SHA-256 is `7226736c2339719cda28fbf3a54d71aa63bcefe376e98cef00034268dab24840`. Do not modify global shell configuration; use the configured toolchain in commands and document portable prerequisites.
+- Use SQLite persistence, Go's standard HTTP routing, one embedded React/TypeScript/Vite build, and feature-owned services/repositories/HTTP handlers. Small local React hooks are sufficient for this slice; TanStack Query and Zustand are optional, not requirements inferred from the linked articles.
+- The canonical account field is `validation_status`, with exactly **`unvalidated`** and **`validated`** for this slice. Roles are separate (`member`, `staff`). The research note's example `pending`/`rejected` states are not adopted. Never accept either role or validation changes from self-registration/profile payloads.
+- Browser sessions use secure HTTP-only cookies in production and explicit CSRF protection for state changes; mobile clients use opaque bearer credentials. Sessions expire and are revocable. Read trusted current account status when making authorization decisions, rather than stale client/token claims.
+- Staff bootstrap is an operator-only command or explicit bootstrap mode using supplied credentials, never a public API or a default password. No production demo accounts or fabricated event seed data.
+- The public landing direction is documented in `initial.design.md` and `.taste-skill/direction.json`: editorial-report seed 979061848. Verify actual image source/license metadata and inspect downloaded images before use; research-proposed URLs are candidates, not proven assets.
+- Source-backed Cloudflare review is performed against the completed revision; the principal owns formal audit artifacts. Ordinary development checks are distinct from security-audit execution. The skill requires OS-enforced isolation for any target execution during the audit; use source evidence when execution controls are unavailable and disclose the exact gap.
+
+## Implemented evidence
+
+All commands were run from the repository root with Go 1.27.4
+(`/home/dani/.local/share/maulid-toolchains/go1.27.4/go/bin/go`) and Node 26.5.0.
+Full details and timestamps are in `.agents/journal/2026-11-14-implementation.md`.
+
+| Requirement | Observed evidence |
+| --- | --- |
+| Read existing code and references | `docs/research/initial.sources.md` + `initial.reference-verification.md`; both Medium articles read through public browser access |
+| Go API/backend; React public/backoffice | `make build` produced `bin/maulid`; the binary served `/`, `/akun`, `/backoffice` (200) and the API on one port |
+| One feature-modular monolith | `docs/architecture.md`; `internal/{account,post,staff,platform,app,webui}`; frontend boundary lint reports “Feature boundaries OK” |
+| Feature-owned component/service/state/UI | `web/src/features/*` with public `index.ts`; deep imports rejected by `check-boundaries.mjs` |
+| Imports/variables/UI/styles ordering | `check-source-order.mjs` reports “Source order OK” |
+| Agent code journal | `.agents/journal/2026-11-14-initial.md`, `-research`, `-reference-verification`, `-principal-review`, `-implementation` |
+| Unit coverage strictly > 80% | backend `87.3%` statements; frontend statements `96.31%`, branches `87.24%`, functions `97.24%`, lines `96.44%`; both gates fail at `<= 80%` |
+| Validated-user posting invariant | API: anonymous 401, unvalidated 403 `validation_required`, staff-validated 201, session reflects the change immediately; forged status impossible (server reads SQLite) |
+| Any account may interact | unvalidated member like succeeded and repeated idempotently; nonexistent post 404 |
+| Protected staff validation | anonymous 401, member 403, CSRF missing 403, staff update 200 + audit row; no HTTP staff creation path |
+| Cloudflare security audit | `docs/security-audit.md`; 12-unit ledger and 4-record findings set both pass the skill validators; run artifacts under `/tmp/opencode/security-audit/maulid.id/run-1/` |
+| Branch/worktree and small commits | `feat/initialize` checkout, feature-prefixed commits (see `git log`) |
+| Push to origin | performed after the final gate; remote head reported in the delivery message |
+| Keep worktree until merge | checkout retained; no cleanup performed |
+| Preserve prompt and interpretation | `initial.prompt.txt` unchanged; this plan updated with observed evidence |
+| Requested agent roles | Antigravity research dispatches, verified OpenCode DeepSeek V4.1 Flash `high` session, advisory Jev request recorded in the journal; no recursive principal |
+
+Runtime and browser checks: health/ready 200; three surfaces served from the single
+binary; cookie `HttpOnly; SameSite=Lax` (Secure in production); CSP and hardening
+headers present; design inspector `0 FAIL, 2 WARN` at 1440/768/390 with screenshots
+reviewed; `verify-ui.mjs` 15/15 checks including staff login through the real form,
+backoffice validation round trip, 390 px overflow checks, feed search and reduced
+motion. `govulncheck` and `npm audit --audit-level=high` report no vulnerabilities.
+
+## Remaining limitations
+
+- Registration returns a distinct conflict for an existing email (audit finding F-1,
+  low). Fixing it requires a neutral acknowledgement and email verification, which the
+  product does not have yet; the per-IP limiter is the compensating control.
+- Authentication rate limiting keys on the socket peer address. Behind a reverse proxy
+  all clients would share one bucket; deployment topology is not in the repository
+  (audit record NV-1, needs validation). Enforce auth rate limits at the edge and
+  document the deployment assumption.
+- The public page has no moving picture: no honest clip of these communities was
+  available, so none was used rather than substituting stock footage.
