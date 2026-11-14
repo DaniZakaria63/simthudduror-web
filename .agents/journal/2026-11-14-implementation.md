@@ -101,6 +101,23 @@ both pass the skill's validators. Summary in `docs/security-audit.md`; artifacts
 
 ## Open items
 
-- Commits and the final push to `origin` are performed after this journal is written.
 - F-1 remains an accepted low risk; NV-1 remains a deployment prerequisite.
 - Keep the worktree until the user confirms the branch is merged.
+
+## Delivery
+
+Commits on `feat/initialize` (feature-prefixed, smallest coherent slices):
+
+```text
+ce697c8 backend: add feature-modular Go monolith with SQLite accounts, posts and staff validation
+392e244 web: add editorial landing page, account screens and staff backoffice
+90ba42a tooling: add build, coverage gates, boundary checks and developer docs
+931d2b6 docs: record plan evidence, architecture, research sources and security audit
+```
+
+`git push -u origin feat/initialize` succeeded; `git ls-remote origin
+refs/heads/feat/initialize` returned `931d2b6e03056a0a0feff1edb32a3f575d53aee0`,
+identical to the local HEAD, and the worktree was clean at that point. A final rebuild
+of the pushed revision served `/`, `/backoffice` and the hashed CSS with 200 and a
+staff login with 200 on a fresh database.
+
