@@ -86,6 +86,7 @@ Full details and timestamps are in `.agents/journal/2026-11-14-implementation.md
 | Requirement | Observed evidence |
 | --- | --- |
 | Read existing code and references | `docs/research/initial.sources.md` + `initial.reference-verification.md`; both Medium articles read through public browser access |
+| References extracted into the codebase | `.agents/skills/{react-feature-architecture,go-feature-architecture,security-audit,monolith-delivery}` with per-skill `references/sources.md`; Cloudflare skill vendored (MIT) at `c1c8a8c…`; index in `docs/skills.md` |
 | Go API/backend; React public/backoffice | `make build` produced `bin/maulid`; the binary served `/`, `/akun`, `/backoffice` (200) and the API on one port |
 | One feature-modular monolith | `docs/architecture.md`; `internal/{account,post,staff,platform,app,webui}`; frontend boundary lint reports “Feature boundaries OK” |
 | Feature-owned component/service/state/UI | `web/src/features/*` with public `index.ts`; deep imports rejected by `check-boundaries.mjs` |

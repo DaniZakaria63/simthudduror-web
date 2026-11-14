@@ -18,6 +18,21 @@ Do not split these into separate apps/services without an explicit decision from
 - Validation status is a core account concept; keep its naming and behavior consistent across the API, backoffice, and landing page. The canonical values are `unvalidated` and `validated`, surfaced as “Belum divalidasi” and “Sudah divalidasi”.
 - Staff accounts are created only through `cmd/staff-bootstrap`; never add an HTTP route that grants the staff role.
 
+## Project skills
+
+The prompt's reference material is extracted into loadable project skills under
+`.agents/skills/` (index: `docs/skills.md`). Load the matching skill before the work:
+
+| Skill | Use for |
+| --- | --- |
+| `react-feature-architecture` | React screens, components, hooks, state, styling, tests |
+| `go-feature-architecture` | Go API, services, repositories, auth, staff code |
+| `security-audit` | security review/audit; auth, session, validation changes |
+| `monolith-delivery` | prompt→plan, branch/worktree, commits, journal, push |
+
+They are project-specific and cite their sources and adaptations in each skill's
+`references/`. They never override this file or the prompt/plan.
+
 ## Commands
 
 Go 1.27.4+ and Node.js 22+ are required. The full command reference is in `README.md`.
