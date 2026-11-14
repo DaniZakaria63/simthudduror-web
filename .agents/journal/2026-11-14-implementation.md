@@ -121,3 +121,16 @@ identical to the local HEAD, and the worktree was clean at that point. A final r
 of the pushed revision served `/`, `/backoffice` and the hashed CSS with 200 and a
 staff login with 200 on a fresh database.
 
+
+## Final verify gate
+
+- Added a single root `make verify` target (lint + race + coverage + web build +
+  govulncheck/npm audit + `go build ./...`) and documented it in `README.md` and
+  `AGENTS.md`.
+- Observed `make verify` on 2026-11-14 with Go 1.27.4 and Node 26.5.0: gofmt/vet OK;
+  `go test -race ./...` OK; backend coverage 87.3% (>80%); Vitest 69/69 with
+  statements 96.31%, branches 87.24%, functions 97.24%, lines 96.44%; typecheck and
+  Vite production build OK; `govulncheck` "No vulnerabilities found."; `npm audit`
+  0 vulnerabilities; final `go build ./...` OK.
+- Committed as `6b4a7be tooling: add full verify gate` and pushed to
+  `origin/feat/initialize`; local and remote heads matched.
