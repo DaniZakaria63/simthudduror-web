@@ -46,7 +46,11 @@ make coverage    # backend statements >80% and frontend statements/branches/func
 make lint        # gofmt check, go vet, feature-boundary and source-order checks
 make race        # go test -race ./...
 make security    # govulncheck ./... + npm audit --audit-level=high
+make verify      # full gate: lint + race + coverage + web build + security + go build
 ```
+
+`make verify` is the single root gate. A non-zero exit from any part means the
+work is not ready.
 
 Coverage gates fail when the measured value is 80% or lower, as required by the
 project plan. The latest measured values are recorded in

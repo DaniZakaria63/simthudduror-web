@@ -45,6 +45,7 @@ make coverage      # backend statements and frontend metrics must be >80%
 make lint          # gofmt check, go vet, feature-boundary and source-order checks
 make race          # go test -race ./...
 make security      # govulncheck ./... + npm audit
+make verify        # full gate: lint + race + coverage + web build + security + go build
 make run           # development server on :8080
 make run-dev       # Vite dev server on :5173 (proxies /api to :8080)
 make staff-bootstrap EMAIL=... NAME=...   # operator-only first staff account

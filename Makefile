@@ -10,7 +10,7 @@ WEB := web
 BIN := bin
 
 .PHONY: all deps build web-build embed test test-go test-web coverage coverage-go coverage-web \
-	lint lint-go lint-web vet race security run run-dev staff-bootstrap clean
+	lint lint-go lint-web vet race security verify run run-dev staff-bootstrap clean
 
 all: build
 
@@ -75,6 +75,11 @@ race:
 security:
 	$(GO) run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
 	cd $(WEB) && $(NPM) run audit
+
+## Full gate: formatting, vet, race, coverage, lint, dependency audit and build.
+verify: lint race coverage web-build security
+	$(GO) build -trimpath ./...
+	@echo "verify: all checks passed"
 
 ## Run the monolith on http://127.0.0.1:8080 with local data in ./data.
 run:
