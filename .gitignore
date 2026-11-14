@@ -1,0 +1,24 @@
+# Build artefacts
+/bin/
+/web/dist/
+/web/coverage/
+/web/node_modules/
+
+# Generated frontend bundle embedded into the Go binary. The placeholder keeps a
+# clean checkout compilable before `make build` runs.
+/internal/webui/dist/*
+!/internal/webui/dist/.keep
+
+# Local runtime data (SQLite database, WAL and shared-memory files)
+/data/
+*.db
+*.db-wal
+*.db-shm
+
+# Local environment overrides
+.env
+.env.*
+
+# Ephemeral tooling output
+/.taste-skill/inspect/
+*.log
