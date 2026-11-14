@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "EB Garamond";
+  src: url("./fonts/eb-garamond-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("./fonts/eb-garamond-italic-latin.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: swap;
+}
+
+:root {
+  --bg: #ffffff;
+  --surface: #f3f3f3;
+  --ink: #0a0a0a;
+  --muted: #4f4f4f;
+  --accent: #2436ff;
+  --accent-ink: #ffffff;
+  --field-blue: #2436ff;
+  --field-blue-ink: #ffffff;
+  --field-red: #ff3b1f;
+  --field-red-ink: #0a0a0a;
+  --field-black: #0a0a0a;
+  --field-black-ink: #ffffff;
+  --field-navy: #050a5c;
+  --field-navy-ink: #ffffff;
+
+  --font-display: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-text: "EB Garamond", Georgia, "Times New Roman", serif;
+
+  --step-small: clamp(1rem, 0.95rem + 0.12vw, 1.0625rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-display: clamp(4rem, 1rem + 8.3vw, 8rem);
+
+  --margin: clamp(1rem, 2.2vw, 2rem);
+  --gutter: clamp(0.75rem, 1.4vw, 1.5rem);
+  --axis: 42%;
+  --section-gap: clamp(5rem, 10vw, 11rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 240ms;
+  --t-reveal: 800ms;
+}

@@ -1,0 +1,174 @@
+.backoffice {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(3.5rem, 8vw, 7rem) var(--margin) clamp(5rem, 10vw, 9rem);
+  max-width: 1280px;
+}
+
+.backoffice h1 {
+  font-size: var(--step-head);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.backoffice h2 {
+  font-size: var(--step-lead);
+  letter-spacing: -0.02em;
+}
+
+.backoffice__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.backoffice__header p {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+.backoffice__controls {
+  display: grid;
+  grid-template-columns: minmax(12rem, 18rem) minmax(14rem, 26rem);
+  gap: 1rem;
+  align-items: end;
+}
+
+.backoffice__controls .field select,
+.backoffice__controls .field input {
+  background: var(--surface);
+}
+
+.backoffice__count {
+  color: var(--muted);
+  font-size: var(--step-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.backoffice__table-wrap {
+  width: 100%;
+}
+
+.backoffice__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.backoffice__table th,
+.backoffice__table td {
+  padding: 0.8rem 0.7rem;
+  vertical-align: top;
+}
+
+.backoffice__table th {
+  font-weight: 500;
+  font-size: var(--step-small);
+  color: var(--muted);
+  border-bottom: 4px solid var(--ink);
+}
+
+.backoffice__table tbody tr:nth-child(odd) {
+  background: var(--surface);
+}
+
+.backoffice__table td {
+  font-size: var(--step-small);
+  line-height: 1.45;
+}
+
+.backoffice__table td:first-child {
+  font-size: var(--step-body);
+  font-weight: 500;
+}
+
+.backoffice__table .button {
+  min-height: 38px;
+  padding: 0.45rem 0.7rem;
+  font-size: var(--step-small);
+}
+
+.backoffice__empty {
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.backoffice__audit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.backoffice__audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 70ch;
+}
+
+.backoffice__audit-list li {
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+}
+
+.backoffice__audit-list time {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: var(--step-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.backoffice--gate {
+  max-width: 720px;
+}
+
+@media (max-width: 760px) {
+  .backoffice__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .backoffice__table thead {
+    display: none;
+  }
+
+  .backoffice__table,
+  .backoffice__table tbody,
+  .backoffice__table tr,
+  .backoffice__table td {
+    display: block;
+    width: 100%;
+  }
+
+  .backoffice__table tr {
+    padding: 0.9rem 0;
+    background: var(--surface);
+    margin-bottom: 0.6rem;
+  }
+
+  .backoffice__table tbody tr:nth-child(odd) {
+    background: var(--surface);
+  }
+
+  .backoffice__table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0.9rem;
+  }
+
+  .backoffice__table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    flex: 0 0 40%;
+  }
+
+  .backoffice__table td:first-child {
+    font-size: var(--step-body);
+  }
+}

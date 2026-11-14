@@ -1,0 +1,7 @@
+.app-main {
+  min-height: 50vh;
+}
+
+.app-main:focus {
+  outline: none;
+}
