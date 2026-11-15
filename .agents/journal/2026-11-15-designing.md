@@ -59,10 +59,13 @@ interpretation, and not save collections or edit files.
 - Mobbin has **no dedicated Islamic app** and no major Indonesian news app. Repeated named
   and category probes returned unrelated wellness/community products; Indonesian-language
   queries are not indexed.
-- The closest Islamic community-content pattern is **Nextdoor's Ramadan Mubarak card**
-  (mark → greeting → one verb, no commerce). Islamic-adjacent modules exist in Binance
-  (Sharia), Snoonu (halal certification), Grab/GoPay (Indonesian Ramadan/THR language) and
-  Careem (donation).
+- The closest Islamic community-content pattern recorded in the first pass was a
+  **Nextdoor Ramadan card**. **Correction (2026-11-16):** the cited capture
+  `feb2cdda-699f-4be5-a11a-244612039997` is Nextdoor's Local Deals explanation page, not a
+  Ramadan card. A verification pass found no Nextdoor seasonal module. The Maulid seasonal
+  module is now treated as a maulid.id editorial decision, not Nextdoor evidence. Other
+  Islamic-adjacent modules exist in Binance (Sharia), Snoonu (halal certification) and
+  Grab/GoPay (Indonesian Ramadan/THR language).
 - Strong structural references: Nextdoor (local feed + news strip + composer), Lex
   (place-based post feed), Reddit (source-first row), Yahoo News Singapore (SEA news row),
   SCMP (latest stories, News Agenda), Luma (upcoming/past events), NYT/Quartz/Wise/PayPal/

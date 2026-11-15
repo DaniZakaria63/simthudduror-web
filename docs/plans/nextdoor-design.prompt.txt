@@ -1,0 +1,2 @@
+next door is good, I choose that. Now extract all screen component, design pattern, design UI principal, the screen composition, UI components, and all things about that app into this project as design and as skills. Also make sure future UI design will according to those information. I need as detailed as possible. Keep the information in this project and then push to origin. Later until I told you about the further
+prompt

@@ -46,12 +46,15 @@ apps, and Indonesian-language queries are not indexed.
 
 What **does** exist is Islamic content or compliance inside secular products:
 
-- **Nextdoor — Ramadan Mubarak module.** The closest Islamic community-content pattern
-  found anywhere in Mobbin.
 - **Binance — Sharia Products.** A plain compliance claim with a crescent mark.
 - **Snoonu (Qatar) — Halal Certified.** Halal as a filterable attribute, not a theme.
 - **Grab / GoPay — Indonesian Ramadan and THR campaigns.** Local seasonal visual language.
 - **Careem — Gaza donation flow.** A restrained charity pattern.
+
+**Correction (2026-11-16):** an earlier draft of this report cited a Nextdoor “Ramadan
+Mubarak” card. The capture `feb2cdda-699f-4be5-a11a-244612039997` is Nextdoor's **Local
+Deals** explanation page. A verification pass found no Nextdoor seasonal module. Do not
+cite Nextdoor for the Maulid card; it is a maulid.id editorial decision.
 
 **Consequence:** do not claim a like-for-like Islamic app precedent. Use community-news,
 local-news and editorial references for structure, and the Islamic-adjacent modules above
@@ -449,17 +452,13 @@ per rail.
 
 ### 3.6 Islamic-adjacent and Indonesian seasonal patterns
 
-**Nextdoor — Ramadan Mubarak module**
+**No verified Nextdoor seasonal module**
 <https://mobbin.com/screens/feb2cdda-699f-4be5-a11a-244612039997>
 
-- The closest Islamic community-content pattern found in Mobbin.
-- Centered crescent illustration, bold “Ramadan Mubarak”, one explanatory sentence
-  (“Celebrate the communal spirit of Ramadan with your Muslim neighbours…”), one green pill
-  “Share good wishes”.
-- It is a full-width in-feed card above “Local Deals”: no price, no product, no countdown —
-  a calm seasonal notice inside an otherwise commercial feed.
-- **Borrow:** a seasonal Maulid band with the same three-part anatomy (mark → greeting → one
-  verb pill), in Indonesian, inviting a greeting or doa rather than a purchase.
+- This capture is Nextdoor's **Local Deals** explanation page, not a Ramadan card. Searches
+  for `Nextdoor Ramadan` and seasonal greetings returned no Nextdoor result.
+- The Maulid seasonal module is therefore a maulid.id editorial decision: mark → greeting
+  → one action, in Indonesian, with no commerce. Do not present it as a Nextdoor precedent.
 
 **Binance — Sharia Products**
 <https://mobbin.com/screens/39875189-194c-467c-9f84-4d0f41183c29>
@@ -657,8 +656,8 @@ honest trust explanation. Do not simulate unsupported features with fake content
    a stock photo. PayPal and Ramp show that image-free cards can look finished.
 9. **Date-first event rows for Maulid season.** Day gutter, WIB time, venue, organizer and
    attendance count. The SCMP agenda and Luma rows are the strongest models.
-10. **A calm seasonal module.** Nextdoor's Ramadan card — mark, greeting, one verb — is the
-    right register. No countdown, no discount, no commerce.
+10. **A calm seasonal module.** The Maulid card is a maulid.id editorial decision, not a
+    Nextdoor pattern: mark → greeting → one action, no countdown, no discount, no commerce.
 11. **Two-tier editorial footer.** Categories and about links first, legal links in smaller
     type, with the masthead mark.
 12. **Text-first density for Indonesian mobile data.** Headlines and metadata carry the
@@ -809,7 +808,7 @@ moderation rules screen`, and named-app queries.
 
 | Product | Platform | Mobbin |
 | --- | --- | --- |
-| Nextdoor Ramadan | iOS | <https://mobbin.com/screens/feb2cdda-699f-4be5-a11a-244612039997> |
+| Nextdoor Local Deals (not seasonal) | iOS | <https://mobbin.com/screens/feb2cdda-699f-4be5-a11a-244612039997> |
 | Binance Sharia | iOS | <https://mobbin.com/screens/39875189-194c-467c-9f84-4d0f41183c29> |
 | Snoonu halal | iOS | <https://mobbin.com/screens/17404f2c-db93-46c7-8489-74aedd0fded6> |
 | Grab Ramadan | iOS | <https://mobbin.com/screens/406422a4-9ab8-4388-8dc6-b017ccf3bc72> |
