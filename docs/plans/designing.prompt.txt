@@ -1,0 +1,1 @@
+I need you to install mobbin mcp and try to search relevant islam community news sharing app that similar with this app concept. Fetch from origin development and create new branch feat/designing and use that as the worktree .. Use subagent to help  your work
