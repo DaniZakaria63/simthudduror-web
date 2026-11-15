@@ -118,5 +118,6 @@ removes publishing rights on the next request without a re-login.
 - `docs/plans/initial.design.md` — public page art direction
 - `docs/architecture.md` — module boundaries, request lifecycle and data model
 - `docs/security-audit.md` — Cloudflare security-audit run, findings and limits
+- `docs/design/` — mandatory Nextdoor-derived UI reference, components and review checklist
 - `docs/skills.md` — project agent skills extracted from the prompt's references
 - `docs/research/` — reference matrix, raw retrievals and image provenance

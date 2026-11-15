@@ -20,8 +20,9 @@ Do not split these into separate apps/services without an explicit decision from
 
 ## Project skills
 
-The prompt's reference material is extracted into loadable project skills under
-`.agents/skills/` (index: `docs/skills.md`). Load the matching skill before the work:
+The project's reference material — the prompt sources and the Nextdoor design reference — is
+extracted into loadable project skills under `.agents/skills/` (index: `docs/skills.md`).
+Load the matching skill before the work:
 
 | Skill | Use for |
 | --- | --- |
@@ -29,6 +30,7 @@ The prompt's reference material is extracted into loadable project skills under
 | `go-feature-architecture` | Go API, services, repositories, auth, staff code |
 | `security-audit` | security review/audit; auth, session, validation changes |
 | `monolith-delivery` | prompt→plan, branch/worktree, commits, journal, push |
+| `nextdoor-design` | **mandatory** before any UI, layout, component, visual or design-review work |
 
 They are project-specific and cite their sources and adaptations in each skill's
 `references/`. They never override this file or the prompt/plan.
@@ -72,6 +74,23 @@ module boundaries. In short:
 - Never use `dangerouslySetInnerHTML` or browser storage for credentials; the CSRF
   token stays in memory.
 
+## Design reference
+
+All public, account and backoffice UI follows the Nextdoor-derived design reference in
+`docs/design/` and the `nextdoor-design` skill. Before designing, building, restyling or
+reviewing any screen, component or visual token:
+
+1. load `nextdoor-design` and read the reference that matches the task;
+2. apply `docs/design/ui-review-checklist.md`;
+3. keep the post grammar `author · validation status · time → content → actions`;
+4. attach desktop/tablet/phone screenshots and record deliberate deviations.
+
+The reference is structural, not a clone. Never copy Nextdoor's logo, brand assets,
+illustrations, photography, copy, ads or exact compositions. Do not add advertising,
+sponsored cards, paywalls, points, streaks, leaderboards, paid verification ticks or
+fintech-style identity checks. If the API cannot support a reference pattern, document the
+schema work instead of faking it in the UI.
+
 ## Verification expectations
 
 `docs/plans/initial.plan.md` maps every requirement to its evidence. Before claiming
@@ -83,7 +102,9 @@ work complete, run the full gate and record the actual numbers in
 - frontend: typecheck, boundary/source-order lint, component/service tests,
   statements/branches/functions/lines >80%, `npm audit`, production build;
 - runtime: all three surfaces served by one binary, the validation invariant
-  exercised through the API, and the public page reviewed in a real browser.
+  exercised through the API, and the public page reviewed in a real browser;
+- UI: `docs/design/ui-review-checklist.md` completed, with desktop/tablet/phone
+  screenshots and keyboard, focus, 200% zoom and reduced-motion checks.
 
 ## Docs and journals
 
@@ -92,4 +113,5 @@ work complete, run the full gate and record the actual numbers in
 - `docs/research/` holds the source matrix, raw retrievals, and image provenance.
 - `docs/security-audit.md` records the security-audit run, findings, and remaining
   limitations.
+- `docs/design/` records the mandatory Nextdoor-derived UI reference and review checklist.
 - `.agents/journal/` records agent work, decisions, checks, failures, and fixes.

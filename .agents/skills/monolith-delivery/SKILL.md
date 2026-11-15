@@ -100,6 +100,10 @@ Plus runtime/browser evidence when a surface changed: the three surfaces served 
 built binary, validation invariant through the API, and a real-browser check of the
 page at desktop/tablet/phone widths.
 
+When a UI surface changed, also complete `docs/design/ui-review-checklist.md`, attach the
+desktop/tablet/phone screenshots, and verify keyboard, focus, 200% zoom and reduced motion.
+The `nextdoor-design` skill is mandatory for that work.
+
 A non-zero exit means the work is not done. A coverage value of exactly 80 fails: the
 requirement is strictly greater than 80%.
 
@@ -144,6 +148,8 @@ truth in the same delivery:
 - [ ] Plan updated with observed evidence and explicit limitations.
 - [ ] Journal records the session, commands and results.
 - [ ] Lint, tests, coverage, race, security and build pass.
+- [ ] UI changes complete `docs/design/ui-review-checklist.md` and include
+      desktop/tablet/phone screenshots.
 - [ ] Runtime/browser evidence captured for changed surfaces.
 - [ ] Small feature-prefixed commits, no generated artifacts.
 - [ ] Pushed; remote head matches local head.

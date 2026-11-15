@@ -22,6 +22,10 @@ Load this skill before any of these:
 Do not use it for Go work (see `go-feature-architecture`) or for the release
 workflow (see `monolith-delivery`).
 
+Before any visual, layout or component-design decision, also load
+`nextdoor-design` and apply `docs/design/ui-review-checklist.md`. This skill owns code
+structure; the design skill owns composition, hierarchy, tokens and the review gate.
+
 ## Non-negotiables
 
 1. **Feature-sliced, closed modules.** `web/src/features/<feature>/` owns its
